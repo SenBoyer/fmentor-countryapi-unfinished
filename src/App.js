@@ -1,15 +1,20 @@
 import "./App.css";
+import { useState } from "react";
 import Homepage from "./components/Homepage";
 import { BrowserRouter as Router, Routes, Route } from "react-router-dom";
 import CountryProfile from "./components/CountryProfile";
 
 const App = () => {
+  const [data, setData] = useState(false);
   return (
     <div className="app">
       <Router>
         <Routes>
           <Route path="/" element={<Homepage />} />
-          <Route path="/country/:countryName" element={<CountryProfile />} />
+          <Route
+            path="/country/:countryName"
+            element={<CountryProfile data={data} />}
+          />
         </Routes>
       </Router>
     </div>

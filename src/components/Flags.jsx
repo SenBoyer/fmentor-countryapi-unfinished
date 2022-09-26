@@ -1,7 +1,6 @@
 import React, { useEffect, useState } from "react";
 import FlagCard from "./FlagCard";
 import { BrowserRouter as Router, Link } from "react-router-dom";
-import CountryProfile from "./CountryProfile";
 
 const Flags = ({ countries, setCountries, filteredCountries }) => {
   useEffect(() => {
@@ -33,13 +32,13 @@ const Flags = ({ countries, setCountries, filteredCountries }) => {
         {filteredCountries.length > 0
           ? filteredCountries.map((country, index) => (
               <ul key={index}>
-                <Link to={`/country/${country.name.common}`}>
+                <Link to={`/country/${country.name.common}`} state={country}>
                   <FlagCard {...country} />
                 </Link>
               </ul>
             ))
           : countries.map((country, index) => (
-              <Link to={`/country/${country.name.common}`}>
+              <Link to={`/country/${country.name.common}`} state={country}>
                 <ul key={index}>
                   <FlagCard {...country} />
                 </ul>

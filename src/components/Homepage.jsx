@@ -1,11 +1,11 @@
 import React from "react";
-import { useState } from "react";
+import { useState, useContext } from "react";
 import Search from "./Search";
 import Flags from "./Flags";
-
+import { countryContext } from "../CountryContext";
 const Homepage = () => {
-  const [countries, setCountries] = useState([]);
   const [filteredCountries, setFilteredCountries] = useState([]);
+  const { countries, setCountries } = useContext(countryContext);
   return (
     <div className="homepage">
       <style>
