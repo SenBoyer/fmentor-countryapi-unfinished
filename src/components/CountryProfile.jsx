@@ -30,6 +30,14 @@ const CountryProfile = () => {
       <style>
         {`
 
+      .country-profile-wrap {
+        display: flex;
+        justify-content: center;
+        align-items: center;
+        border: 1px solid black;
+        height: 100vh;
+      } 
+
       .country-profile {
         border: 1px solid black;
         display: flex;
@@ -51,63 +59,67 @@ const CountryProfile = () => {
 
       `}
       </style>
-      <div className="country-profile">
-        <div id="flag-image">
-          <img src={countryData.flags.png} alt={countryData.name.common} />
-        </div>
-        <div id="country-info">
-          <div id="country-info-left">
-            <h2>{countryData.name.common}</h2>
-            <p>
-              Native Name:{" "}
-              {countryData.name.nativeName &&
-                Object.values(countryData.name.nativeName).map(
-                  (item, index, array) => {
-                    if (index === 0) {
-                      return item.common ? item.common : item;
+      <div className="country-profile-wrap">
+        <div className="country-profile">
+          <div id="flag-image">
+            <img src={countryData.flags.png} alt={countryData.name.common} />
+          </div>
+          <div id="country-info">
+            <div id="country-info-left">
+              <h2>{countryData.name.common}</h2>
+              <p>
+                Native Name:{" "}
+                {countryData.name.nativeName &&
+                  Object.values(countryData.name.nativeName).map(
+                    (item, index, array) => {
+                      if (index === 0) {
+                        return item.common ? item.common : item;
+                      }
                     }
-                  }
-                )}
-            </p>
-            <p>Population: {countryData.population.toLocaleString("en-US")}</p>
-            <p>Region: {countryData.region}</p>
-            <p>Sub Region: {countryData.subregion}</p>
-            <p>Capital: {countryData.capital[0]}</p>
-          </div>
-          <div id="country-info-right">
-            <p>Top Level Domain: {countryData.tld[0]}</p>
+                  )}
+              </p>
+              <p>
+                Population: {countryData.population.toLocaleString("en-US")}
+              </p>
+              <p>Region: {countryData.region}</p>
+              <p>Sub Region: {countryData.subregion}</p>
+              <p>Capital: {countryData.capital[0]}</p>
+            </div>
+            <div id="country-info-right">
+              <p>Top Level Domain: {countryData.tld[0]}</p>
 
-            {Object.values(countryData.currencies).map((currency) => (
-              <p>Currencies: {currency.name}</p>
-            ))}
+              {Object.values(countryData.currencies).map((currency) => (
+                <p>Currencies: {currency.name}</p>
+              ))}
 
-            <p>
-              Languages:{" "}
-              {Object.values(countryData.languages).map(
-                (lang, index, array) => {
-                  if (index !== array.length - 1) {
-                    return lang + ", ";
-                  } else {
-                    return lang;
-                  }
-                }
-              )}
-            </p>
-          </div>
-          <div id="border-countries">
-            <p>
-              Border Countries:{" "}
-              {countryData.borders &&
-                Object.values(countryData.borders).map(
-                  (border, index, array) => {
+              <p>
+                Languages:{" "}
+                {Object.values(countryData.languages).map(
+                  (lang, index, array) => {
                     if (index !== array.length - 1) {
-                      return border + ", ";
+                      return lang + ", ";
                     } else {
-                      return borderLeftColor;
+                      return lang;
                     }
                   }
                 )}
-            </p>
+              </p>
+            </div>
+            <div id="border-countries">
+              <p>
+                Border Countries:{" "}
+                {countryData.borders &&
+                  Object.values(countryData.borders).map(
+                    (border, index, array) => {
+                      if (index !== array.length - 1) {
+                        return border + ", ";
+                      } else {
+                        return borderLeftColor;
+                      }
+                    }
+                  )}
+              </p>
+            </div>
           </div>
         </div>
       </div>

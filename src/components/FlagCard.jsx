@@ -32,7 +32,7 @@ const FlagCard = ({ flags, name, population, region, capital }) => {
         <Typography gutterBottom variant="h5" component="div">
           {name.common}
         </Typography>
-        <p>Population: {population}</p>
+        <p>Population: {population.toLocaleString("en-us")}</p>
         <p>Region: {region}</p>
         {capital && <p>Capital: {capital[0]}</p>}
       </CardContent>

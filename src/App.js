@@ -5,7 +5,6 @@ import { BrowserRouter as Router, Routes, Route } from "react-router-dom";
 import CountryProfile from "./components/CountryProfile";
 
 const App = () => {
-  const [data, setData] = useState(false);
   return (
     <div className="app">
       <Router>
