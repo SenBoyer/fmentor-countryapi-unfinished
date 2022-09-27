@@ -1,52 +1,117 @@
+import { borderLeftColor } from "@mui/system";
 import React from "react";
-import { useLocation } from "react-router-dom";
+import { useEffect, useState } from "react";
+import { useParams } from "react-router-dom";
 
-const CountryProfile = ({ data }) => {
-  const location = useLocation();
-  console.log("data", data);
-  console.log("location=", location);
+const CountryProfile = () => {
+  const [countryData, setCountryData] = useState();
+  const params = useParams();
+
+  useEffect(() => {
+    const fetchData = async () => {
+      console.log("useEffect/fetchData() running");
+      const response = await fetch(
+        `https://restcountries.com/v3.1/name/${params.countryName}`
+      );
+      console.log("response", response);
+      const [data] = await response.json();
+      setCountryData(data);
+    };
+
+    fetchData();
+  }, [params]);
+
+  if (!countryData) {
+    return <h1>loading</h1>;
+  }
+
   return (
-    <div className="country-profile">
-      <div id="flag-image">
-        <img src={location.state.flags.png} alt={location.state.name.common} />
-      </div>
-      <div id="country-info">
-        <h2>{location.state.name.common}</h2>
-        <div id="country-info-left">
-          <p>
-            Native Name:
-            {location.state.name.nativeName &&
-              Object.values(location.state.name.nativeName).map((item) =>
-                item.common ? item.common : item
+    <>
+      <style>
+        {`
+
+      .country-profile {
+        border: 1px solid black;
+        display: flex;
+        justify-content: space-between;
+        align-items: center;
+        margin: 0 5rem;
+      }
+
+      #country-info {
+        display: flex;
+        border: 1px solid black;
+        position: relative;
+      }
+
+      #border-countries {
+        width: 100%;
+        display:
+      }
+
+      `}
+      </style>
+      <div className="country-profile">
+        <div id="flag-image">
+          <img src={countryData.flags.png} alt={countryData.name.common} />
+        </div>
+        <div id="country-info">
+          <div id="country-info-left">
+            <h2>{countryData.name.common}</h2>
+            <p>
+              Native Name:{" "}
+              {countryData.name.nativeName &&
+                Object.values(countryData.name.nativeName).map(
+                  (item, index, array) => {
+                    if (index === 0) {
+                      return item.common ? item.common : item;
+                    }
+                  }
+                )}
+            </p>
+            <p>Population: {countryData.population.toLocaleString("en-US")}</p>
+            <p>Region: {countryData.region}</p>
+            <p>Sub Region: {countryData.subregion}</p>
+            <p>Capital: {countryData.capital[0]}</p>
+          </div>
+          <div id="country-info-right">
+            <p>Top Level Domain: {countryData.tld[0]}</p>
+
+            {Object.values(countryData.currencies).map((currency) => (
+              <p>Currencies: {currency.name}</p>
+            ))}
+
+            <p>
+              Languages:{" "}
+              {Object.values(countryData.languages).map(
+                (lang, index, array) => {
+                  if (index !== array.length - 1) {
+                    return lang + ", ";
+                  } else {
+                    return lang;
+                  }
+                }
               )}
-          </p>
-          <p>Population: {location.state.population}</p>
-          <p>Region: {location.state.region}</p>
-          <p>Sub Region: {location.state.subregion}</p>
-          <p>Capital: {location.state.capital[0]}</p>
-        </div>
-        <div id="country-info-right">
-          <p>Top Level Domain: {location.state.tld[0]}</p>
-
-          {Object.values(location.state.currencies).map((currency) => (
-            <p>Currencies: {currency.name}</p>
-          ))}
-
-          <p>
-            Languages:{" "}
-            {Object.values(location.state.languages).map((lang) => (
-              <span>{lang},</span>
-            ))}
-          </p>
-        </div>
-        <div id="border-countries">
-          {location.state.borders &&
-            Object.values(location.state.borders).map((border) => (
-              <p>Border Countries: {border} </p>
-            ))}
+            </p>
+          </div>
+          <div id="border-countries">
+            <p>
+              Border Countries:{" "}
+              {countryData.borders &&
+                Object.values(countryData.borders).map(
+                  (border, index, array) => {
+                    if (index !== array.length - 1) {
+                      return border + ", ";
+                    } else {
+                      return borderLeftColor;
+                    }
+                  }
+                )}
+            </p>
+          </div>
         </div>
       </div>
-    </div>
+    </>
   );
 };
 

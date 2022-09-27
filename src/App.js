@@ -11,10 +11,7 @@ const App = () => {
       <Router>
         <Routes>
           <Route path="/" element={<Homepage />} />
-          <Route
-            path="/country/:countryName"
-            element={<CountryProfile data={data} />}
-          />
+          <Route path="/country/:countryName" element={<CountryProfile />} />
         </Routes>
       </Router>
     </div>

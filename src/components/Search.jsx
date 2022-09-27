@@ -11,7 +11,6 @@ const Search = ({
   countries.forEach((country) => {
     countrySet.add(country.region);
   });
-  console.log(countrySet);
 
   const searchFilter = (event) => {
     setSearch(event.target.value);
