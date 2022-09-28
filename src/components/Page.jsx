@@ -4,8 +4,6 @@ export default function Page() {
   const [targetCountry, setTargetCountry] = React.useState(``);
   const [countries, setCountries] = React.useState(null);
 
-  console.log(countries);
-
   React.useEffect(() => {
     const controller = new AbortController();
     const signal = controller.signal;
