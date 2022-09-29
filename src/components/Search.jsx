@@ -47,9 +47,14 @@ const Search = ({
           justify-content: space-between;
         }
         .search select{
-          background-color: white;
+          background-color: hsl(0, 0%, 98%)
           width: 8rem;
         }
+
+        
+      .dark-mode {
+        background-color: <LIGHTER COLOR GREY>
+      }
         `}
       </style>
       <input

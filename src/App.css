@@ -2,15 +2,14 @@
   box-sizing: border-box;
   margin: 0;
   padding: 0;
+  background-color: hsl(0, 0%, 98%)
 }
 
-.app {
- background-color: purple
+*{
+  font-family: 'Nunito Sans', sans-serif;
 }
-@media screen and (max-width: 375px) {
-  .flag-container {
-    display: grid;
-    grid-template-columns: 1fr;
-    background-color: black
-  }
+
+
+.dark-mode {
+  background-color: hsl(207, 26%, 17%)
 }

@@ -6,13 +6,22 @@ import CountryProfile from "./components/CountryProfile";
 import Navbar from "./components/Navbar";
 
 const App = () => {
+  const [darkMode, setDarkmode] = useState(false);
   return (
-    <div className="app">
-      <Navbar />
+    <div className={`${darkMode ? "dark-mode app" : "app"}`}>
+      <Navbar darkMode={darkMode} setDarkmode={setDarkmode} />
       <Router>
         <Routes>
-          <Route path="/" element={<Homepage />} />
-          <Route path="/country/:countryName" element={<CountryProfile />} />
+          <Route
+            path="/"
+            element={<Homepage darkMode={darkMode} setDarkmode={setDarkmode} />}
+          />
+          <Route
+            path="/country/:countryName"
+            element={
+              <CountryProfile darkMode={darkMode} setDarkmode={setDarkmode} />
+            }
+          />
         </Routes>
       </Router>
     </div>

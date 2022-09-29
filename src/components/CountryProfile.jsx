@@ -4,7 +4,7 @@ import { useEffect, useState, useContext } from "react";
 import { countryContext } from "../CountryContext";
 import { useParams } from "react-router-dom";
 
-const CountryProfile = () => {
+const CountryProfile = ({ darkMode, setDarkmode }) => {
   const [countryData, setCountryData] = useState();
   const [borderCountries, setBorderCountries] = useState();
   const params = useParams();
@@ -28,6 +28,8 @@ const CountryProfile = () => {
 
   useEffect(() => {
     const getBorders = () => {
+      console.log("getBorders running");
+      console.log("countryData=", countryData);
       if (countryData.borders) {
         let borders = [];
         let real_name = [];
@@ -42,7 +44,7 @@ const CountryProfile = () => {
         });
         setBorderCountries(real_name);
       } else {
-        setBorderCountries([]);
+        setBorderCountries(null);
       }
     };
 
@@ -69,17 +71,15 @@ const CountryProfile = () => {
       } 
 
       .country-profile {
-        border: 1px solid black;
         display: flex;
         justify-content: space-between;
         align-items: center;
-        margin: 0 5rem;
+        max-width: 100vw;
       }
 
       #country-info {
         display: flex;
         flex-direction: column;
-        border: 1px solid black;
         position: relative;
       }
 
@@ -89,18 +89,41 @@ const CountryProfile = () => {
 
       #border-countries {
         width: 100%;
-        display:
       }
 
-      @media screen and (max-width: 375px) {
+      .dark-mode {
+        background-color: hsl(207, 26%, 17%)
+        display: flex;
+        justify-content: center;
+        align-items: center;
+        border: 1px solid black;
+        height: 100vh;
+        color: hsl(0, 0%, 100%);
+      }
+
+      @media screen and (max-width: 475px) {
         .country-profile{
           flex-direction: column;
-  }
-  }
+          }
+          
+          .data-columns {
+          flex-direction: column;
+        }  
+          
+          }
+
+
+        .country-profile #flag-image {
+          margin-right: 5rem
+        }
 
       `}
       </style>
-      <div className="country-profile-wrap">
+      <div
+        className={`${
+          darkMode ? "dark-mode country-profile-wrap" : "country-profile-wrap"
+        }`}
+      >
         <div className="country-profile">
           <div id="flag-image">
             <img src={countryData.flags.png} alt={countryData.name.common} />
@@ -163,11 +186,17 @@ const CountryProfile = () => {
               <p>
                 <b>Border Countries: </b>
                 {countryData.borders &&
+                  borderCountries &&
                   borderCountries.map((country, index, array) => {
                     if (index !== array.length - 1) {
                       return (
-                        <span style={{ border: "1px solid black" }}>
-                          {country},{" "}
+                        <span
+                          style={{
+                            border: "1px solid black",
+                            marginRight: "0.5rem",
+                          }}
+                        >
+                          {country}{" "}
                         </span>
                       );
                     } else
@@ -175,7 +204,6 @@ const CountryProfile = () => {
                         <span
                           style={{
                             border: "1px solid black",
-                            paddingRight: "1rem",
                           }}
                         >
                           {country}

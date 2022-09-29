@@ -1,6 +1,6 @@
 import React from "react";
 
-const Navbar = () => {
+const Navbar = ({ darkMode, setDarkmode }) => {
   return (
     <nav className="navbar">
       <style>
@@ -25,7 +25,14 @@ const Navbar = () => {
   }`}
       </style>
       <h1>Where in the world?</h1>
-      <button>Dark Mode</button>
+      <button
+        onClick={() => {
+          console.log("clicked");
+          setDarkmode(!darkMode);
+        }}
+      >
+        Dark Mode
+      </button>
     </nav>
   );
 };
