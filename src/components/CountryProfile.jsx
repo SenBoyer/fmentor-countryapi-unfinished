@@ -28,6 +28,9 @@ const CountryProfile = () => {
 
   useEffect(() => {
     const getBorders = () => {
+      if (!countryData.borders) {
+        setBorderCountries("");
+      }
       let borders = [];
       let real_name = [];
       console.log("countries=", countries);
@@ -155,13 +158,8 @@ const CountryProfile = () => {
                   borderCountries.map((country, index, array) => {
                     if (index !== array.length - 1) {
                       return (
-                        <span
-                          style={{
-                            border: "1px solid black",
-                            marginRight: "1rem",
-                          }}
-                        >
-                          {country}{" "}
+                        <span style={{ border: "1px solid black" }}>
+                          {country},{" "}
                         </span>
                       );
                     } else
@@ -169,6 +167,7 @@ const CountryProfile = () => {
                         <span
                           style={{
                             border: "1px solid black",
+                            paddingRight: "1rem",
                           }}
                         >
                           {country}

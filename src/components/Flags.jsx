@@ -25,6 +25,13 @@ const Flags = ({ countries, setCountries, filteredCountries }) => {
           grid-column-gap: 4rem;
           grid-row-gap: 2rem;
         }
+
+        @media screen and (max-width: 375px) {
+          .flag-container {
+            display: grid;
+            grid-template-columns: 1fr;
+            background-color: black
+          }
         
         `}
       </style>

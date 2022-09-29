@@ -1,5 +1,16 @@
-.App {
+.app {
   box-sizing: border-box;
   margin: 0;
   padding: 0;
+}
+
+.app {
+ background-color: purple
+}
+@media screen and (max-width: 375px) {
+  .flag-container {
+    display: grid;
+    grid-template-columns: 1fr;
+    background-color: black
+  }
 }
