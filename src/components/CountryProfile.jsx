@@ -28,22 +28,24 @@ const CountryProfile = () => {
 
   useEffect(() => {
     const getBorders = () => {
-      if (!countryData.borders) {
-        setBorderCountries("");
-      }
-      let borders = [];
-      let real_name = [];
-      console.log("countries=", countries);
-      countryData.borders.forEach((border_code) => borders.push(border_code));
-      borders.forEach((border_code) => {
-        countries.forEach((country) => {
-          if (country.cca3 === border_code) {
-            real_name.push(country.name.common);
-          }
+      if (countryData.borders) {
+        let borders = [];
+        let real_name = [];
+        console.log("countries=", countries);
+        countryData.borders.forEach((border_code) => borders.push(border_code));
+        borders.forEach((border_code) => {
+          countries.forEach((country) => {
+            if (country.cca3 === border_code) {
+              real_name.push(country.name.common);
+            }
+          });
         });
-      });
-      setBorderCountries(real_name);
+        setBorderCountries(real_name);
+      } else {
+        setBorderCountries([]);
+      }
     };
+
     if (countryData) {
       getBorders();
     }
@@ -89,6 +91,12 @@ const CountryProfile = () => {
         width: 100%;
         display:
       }
+
+      @media screen and (max-width: 375px) {
+        .country-profile{
+          flex-direction: column;
+  }
+  }
 
       `}
       </style>
@@ -154,7 +162,7 @@ const CountryProfile = () => {
             <div id="border-countries">
               <p>
                 <b>Border Countries: </b>
-                {borderCountries &&
+                {countryData.borders &&
                   borderCountries.map((country, index, array) => {
                     if (index !== array.length - 1) {
                       return (
