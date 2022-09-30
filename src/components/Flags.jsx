@@ -54,14 +54,14 @@ const Flags = ({ countries, setCountries, filteredCountries, darkMode }) => {
           ? filteredCountries.map((country, index) => (
               <ul key={index}>
                 <Link to={`/country/${country.name.common}`} state={country}>
-                  <FlagCard {...country} />
+                  <FlagCard {...country} darkMode={darkMode} />
                 </Link>
               </ul>
             ))
           : countries.map((country, index) => (
               <Link to={`/country/${country.name.common}`} state={country}>
                 <ul key={index}>
-                  <FlagCard {...country} />
+                  <FlagCard {...country} darkMode={darkMode} />
                 </ul>
               </Link>
             ))}

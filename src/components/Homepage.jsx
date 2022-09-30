@@ -27,7 +27,7 @@ const Homepage = ({ darkMode, setDarkmode }) => {
         setCountries={setCountries}
         filteredCountries={filteredCountries}
         setFilteredCountries={setFilteredCountries}
-        setDarkmode={setDarkmode}
+        darkMode={darkMode}
       />
       <Flags
         countries={countries}

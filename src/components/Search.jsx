@@ -5,6 +5,7 @@ const Search = ({
   setCountries,
   filteredCountries,
   setFilteredCountries,
+  darkMode,
 }) => {
   const [search, setSearch] = useState("");
   const countrySet = new Set();
@@ -52,8 +53,9 @@ const Search = ({
         }
 
         
-      .dark-mode {
-        background-color: <LIGHTER COLOR GREY>
+      .dark-mode-search {
+        background-color: hsl(209, 23%, 22%);
+        color: white;
       }
         `}
       </style>
@@ -61,9 +63,12 @@ const Search = ({
         placeholder="Search for a country..."
         value={search}
         onInput={(event) => searchFilter(event)}
+        className={`${darkMode ? "dark-mode-search" : ""}`}
       ></input>
-      <div>{search}</div>
-      <select onChange={(e) => dropDownFilter(e)}>
+      <select
+        onChange={(e) => dropDownFilter(e)}
+        className={`${darkMode ? "dark-mode-search" : ""}`}
+      >
         <option value="Filter by region" hidden>
           Filter by region
         </option>

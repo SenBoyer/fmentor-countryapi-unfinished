@@ -6,17 +6,19 @@ import CardMedia from "@mui/material/CardMedia";
 import Button from "@mui/material/Button";
 import Typography from "@mui/material/Typography";
 
-const FlagCard = ({ flags, name, population, region, capital }) => {
+const FlagCard = ({ flags, name, population, region, capital, darkMode }) => {
   return (
     <>
       <style>
-        {`
-      .css-1ri6ub7-MuiPaper-root-MuiCard-root{
-        placeholder
-      }
-      `}
+        {`.dark-mode-card {
+          background-color: hsl(209, 23%, 22%);
+          color: white;
+        }`}
       </style>
-      <Card sx={{ maxWidth: 345 }}>
+      <Card
+        sx={{ maxWidth: 345 }}
+        className={`${darkMode ? "dark-mode-card" : ""}`}
+      >
         <CardMedia
           component="img"
           alt={name.common}
@@ -31,10 +33,6 @@ const FlagCard = ({ flags, name, population, region, capital }) => {
           <p>Region: {region}</p>
           {capital && <p>Capital: {capital[0]}</p>}
         </CardContent>
-        <CardActions>
-          <Button size="small">Share</Button>
-          <Button size="small">Learn More</Button>
-        </CardActions>
       </Card>
     </>
   );

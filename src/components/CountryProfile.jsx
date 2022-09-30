@@ -68,6 +68,7 @@ const CountryProfile = ({ darkMode, setDarkmode }) => {
         align-items: center;
         border: 1px solid black;
         height: 100vh;
+        position:relative;
       } 
 
       .country-profile {
@@ -99,6 +100,10 @@ const CountryProfile = ({ darkMode, setDarkmode }) => {
         border: 1px solid black;
         height: 100vh;
         color: hsl(0, 0%, 100%);
+      }
+
+      .dark-mode-borders{
+        background-color: hsl(209, 23%, 22%);
       }
 
       @media screen and (max-width: 475px) {
@@ -191,6 +196,7 @@ const CountryProfile = ({ darkMode, setDarkmode }) => {
                     if (index !== array.length - 1) {
                       return (
                         <span
+                          className={`${darkMode ? "dark-mode-borders" : ""}`}
                           style={{
                             border: "1px solid black",
                             marginRight: "0.5rem",
@@ -202,11 +208,12 @@ const CountryProfile = ({ darkMode, setDarkmode }) => {
                     } else
                       return (
                         <span
+                          className={`${darkMode ? "dark-mode-borders" : ""}`}
                           style={{
                             border: "1px solid black",
                           }}
                         >
-                          {country}
+                          {" " + country + " "}
                         </span>
                       );
                   })}
