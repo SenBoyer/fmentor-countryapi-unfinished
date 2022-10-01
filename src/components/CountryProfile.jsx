@@ -2,13 +2,14 @@ import { borderLeftColor } from "@mui/system";
 import React from "react";
 import { useEffect, useState, useContext } from "react";
 import { countryContext } from "../CountryContext";
-import { useParams } from "react-router-dom";
+import { useParams, useHistory, useNavigate, Navigate } from "react-router-dom";
 
 const CountryProfile = ({ darkMode, setDarkmode }) => {
   const [countryData, setCountryData] = useState();
   const [borderCountries, setBorderCountries] = useState();
   const params = useParams();
 
+  let navigate = useNavigate();
   const { countries } = useContext(countryContext);
 
   //GET NAME OF COUNTRY AND SET IT AS TARGET COUNTRY
@@ -76,6 +77,7 @@ const CountryProfile = ({ darkMode, setDarkmode }) => {
         justify-content: space-between;
         align-items: center;
         max-width: 100vw;
+        position: relative;
       }
 
       #country-info {
@@ -122,6 +124,20 @@ const CountryProfile = ({ darkMode, setDarkmode }) => {
           margin-right: 5rem
         }
 
+        .back-button{
+          position:absolute;
+          top: -5.5rem;
+          left: 0;
+          display:flex;
+          align-items: center;
+          justify-content: space-around;
+          width: 6rem;
+        }
+
+        .back-button .dark-mode-button {
+          background-color: hsl(209, 23%, 22%);
+        }
+
       `}
       </style>
       <div
@@ -130,6 +146,14 @@ const CountryProfile = ({ darkMode, setDarkmode }) => {
         }`}
       >
         <div className="country-profile">
+          <button
+            className={`${
+              darkMode ? "dark-mode-button back-button" : "back-button"
+            }`}
+            onClick={() => navigate(-1)}
+          >
+            <span class="material-symbols-outlined">arrow_back</span>Back
+          </button>
           <div id="flag-image">
             <img src={countryData.flags.png} alt={countryData.name.common} />
           </div>
