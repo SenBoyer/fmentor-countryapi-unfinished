@@ -1,15 +1,15 @@
 {
   "files": {
-    "main.css": "/static/css/main.4a37954e.css",
-    "main.js": "/static/js/main.833497a1.js",
-    "static/js/787.ca25cc9e.chunk.js": "/static/js/787.ca25cc9e.chunk.js",
-    "index.html": "/index.html",
-    "main.4a37954e.css.map": "/static/css/main.4a37954e.css.map",
-    "main.833497a1.js.map": "/static/js/main.833497a1.js.map",
-    "787.ca25cc9e.chunk.js.map": "/static/js/787.ca25cc9e.chunk.js.map"
+    "main.css": "/fmentor-flag-app/static/css/main.4a37954e.css",
+    "main.js": "/fmentor-flag-app/static/js/main.dc9e3c47.js",
+    "static/js/787.ca25cc9e.chunk.js": "/fmentor-flag-app/static/js/787.ca25cc9e.chunk.js",
+    "index.html": "/fmentor-flag-app/index.html",
+    "main.4a37954e.css.map": "/fmentor-flag-app/static/css/main.4a37954e.css.map",
+    "main.dc9e3c47.js.map": "/fmentor-flag-app/static/js/main.dc9e3c47.js.map",
+    "787.ca25cc9e.chunk.js.map": "/fmentor-flag-app/static/js/787.ca25cc9e.chunk.js.map"
   },
   "entrypoints": [
     "static/css/main.4a37954e.css",
-    "static/js/main.833497a1.js"
+    "static/js/main.dc9e3c47.js"
   ]
 }
